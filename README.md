@@ -17,7 +17,7 @@ Se nos ha pedido realizar lo siguiente:
 Explicaciones
 ***
 
-*Primer Caso:* 
+*Primer Caso:* La función move() se encarga de actualizar la posición de los fantasmas, haciendo que cada uno calcule la dirección más corta hacia Pacman. Primero, los fantasmas determinan si pueden moverse directamente hacia Pacman; si es posible, ajustan su dirección en consecuencia. Si no pueden seguir a Pacman debido a obstáculos, la función selecciona una dirección aleatoria válida utilizando un conjunto de opciones predefinidas. Este enfoque mejora la inteligencia de los fantasmas, haciéndolos más efectivos en la persecución de Pacman y aumentando el desafío del juego.
 
 *Segundo Caso:* El tablero de pacman está basado en una lista de 0 y 1, 1 representa dónde puede avanzar pacman, los fantasmas y donde aparecen los *"pellets"*, mientras que los 0 representan los bordes del tablero. Al tener conocimiento de esto, extendimos el tablero en tamaño y modificamos los bordes interiores para satisfacer con la condición de que los fantasmas puedan recorrer sin problema. 
 
