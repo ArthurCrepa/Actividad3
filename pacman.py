@@ -112,19 +112,38 @@ def move():
     dot(20, 'yellow')
 
     for point, course in ghosts:
-        if valid(point + course):
-            point.move(course)
-        else:
-            options = [
-                vector(10, 0),
-                vector(-10, 0),
-                vector(0, 10),
-                vector(0, -10),
-            ]
-            plan = choice(options)
-            course.x = plan.x
-            course.y = plan.y
+        # Hacer que el fantasma se mueva hacia Pacman
+        if abs(pacman - point) > 0:
+            # Calculamos la distancia desde el fantasma hacia Pacman
+            if pacman.x > point.x:
+                dx = 10
+            else:
+                dx = -10
+            
+            if pacman.y > point.y:
+                dy = 10
+            else:
+                dy = -10
 
+            # Checamos si la nueva dirección es válida
+            if valid(point + vector(dx, 0)):
+                course.x = dx
+            elif valid(point + vector(0, dy)):
+                course.y = dy
+            else:
+                # Si no hay movimientos válidos en la dirección hacia Pacman, escogemos una opción aleatoria
+                options = [
+                    vector(10, 0),
+                    vector(-10, 0),
+                    vector(0, 10),
+                    vector(0, -10),
+                ]
+                plan = choice(options)
+                course.x = plan.x
+                course.y = plan.y
+
+        # Movemos al fantasma
+        point.move(course)
         up()
         goto(point.x + 10, point.y + 10)
         dot(20, 'red')
@@ -150,10 +169,11 @@ writer.goto(160, 160)
 writer.color('white')
 writer.write(state['score'])
 listen()
-onkey(lambda: change(10, 0), 'Right')
-onkey(lambda: change(-10, 0), 'Left')
-onkey(lambda: change(0, 10), 'Up')
-onkey(lambda: change(0, -10), 'Down')
+onkey(lambda: change(5, 0), 'Right')
+onkey(lambda: change(-5, 0), 'Left')
+onkey(lambda: change(0, 5), 'Up')
+onkey(lambda: change(0, -5), 'Down')
 world()
 move()
 done()
+
